@@ -18,6 +18,7 @@ import threading
 import time
 from pathlib import Path
 from typing import Any
+from urllib.parse import unquote
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 LSP_CONFIG = REPO_ROOT / "plugins" / "basedpyright-lsp" / ".lsp.json"
@@ -96,7 +97,10 @@ class LspClient:
     def wait_notification(self, method: str, predicate=lambda _: True) -> dict[str, Any]:
         deadline = time.monotonic() + TIMEOUT
         while (remaining := deadline - time.monotonic()) > 0:
-            message = self.notifications.get(timeout=remaining)
+            try:
+                message = self.notifications.get(timeout=remaining)
+            except queue.Empty:
+                break
             if message["method"] == method and predicate(message["params"]):
                 return message["params"]
         raise TimeoutError(f"no {method} notification received")
@@ -117,6 +121,11 @@ def position_of(text: str, needle: str, occurrence: int = 0) -> dict[str, int]:
     line = text.count("\n", 0, index)
     character = index - (text.rfind("\n", 0, index) + 1)
     return {"line": line, "character": character}
+
+
+def same_uri(a: str, b: str) -> bool:
+    # Servers may percent-encode the Windows drive colon (file:///d%3A/...).
+    return unquote(a).lower() == unquote(b).lower()
 
 
 def symbol_names(symbols: list[dict[str, Any]]) -> set[str]:
@@ -170,7 +179,7 @@ def main() -> None:
 
         diagnostics = client.wait_notification(
             "textDocument/publishDiagnostics",
-            lambda params: params["uri"].lower() == uri.lower() and params["diagnostics"],
+            lambda params: same_uri(params["uri"], uri) and params["diagnostics"],
         )["diagnostics"]
         check(
             any("int" in d["message"] for d in diagnostics),
