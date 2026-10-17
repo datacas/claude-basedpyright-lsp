@@ -64,6 +64,18 @@ Restart Claude Code after installing.
 > claude plugin uninstall pyright-lsp@claude-plugins-official
 > ```
 
+## Updating
+
+Third-party marketplaces do not auto-update by default. Update manually:
+
+```bash
+claude plugin marketplace update basedpyright-marketplace
+claude plugin update basedpyright-lsp@basedpyright-marketplace
+```
+
+or turn on auto-update for this marketplace from `/plugin` > **Marketplaces**.
+BasedPyright itself is updated separately (`uv tool upgrade basedpyright`).
+
 ## Configuration
 
 The plugin sends no settings of its own. BasedPyright reads your project's
@@ -143,7 +155,19 @@ latest releases.
 `main` is protected: every change goes through a pull request, and the pull request
 merges (squash only) once CI passes on all platforms. When a change affects the
 plugin, bump `version` in `plugin.json` and add an entry to `CHANGELOG.md`, since
-installed copies only update when the version changes.
+installed copies only update when the version changes. CI fails if the version in
+`plugin.json` has no `CHANGELOG.md` entry.
+
+To release, push a tag matching the version from an up-to-date `main`:
+
+```bash
+git tag v1.2.0 && git push origin v1.2.0
+```
+
+The release workflow checks that the tag matches `plugin.json` and publishes a
+GitHub release with the `CHANGELOG.md` notes for that version.
+
+Security issues: see [SECURITY.md](SECURITY.md).
 
 ## Repository layout
 
