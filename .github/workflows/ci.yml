@@ -47,6 +47,8 @@ jobs:
         run: claude plugin validate --strict .
       - name: Validate plugin
         run: claude plugin validate --strict plugins/basedpyright-lsp
+      - name: Check CHANGELOG entry for plugin version
+        run: python3 scripts/release_notes.py
 
   lsp-smoke:
     name: LSP smoke test (${{ matrix.os }})
