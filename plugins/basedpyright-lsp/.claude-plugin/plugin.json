@@ -11,5 +11,13 @@
   "homepage": "https://github.com/datacas/claude-basedpyright-lsp",
   "repository": "https://github.com/datacas/claude-basedpyright-lsp",
   "license": "MIT",
-  "keywords": ["python", "lsp", "basedpyright", "pyright", "type-checking", "language-server"]
+  "keywords": [
+    "python",
+    "lsp",
+    "basedpyright",
+    "pyright",
+    "type-checking",
+    "language-server"
+  ],
+  "icon": "./.claude-plugin/icon.png"
 }
