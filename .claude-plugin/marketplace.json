@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "basedpyright-marketplace",
+  "description": "BasedPyright language server integration for Claude Code",
+  "owner": {
+    "name": "datacas",
+    "email": "david@codesolutions.es"
+  },
+  "plugins": [
+    {
+      "name": "basedpyright-lsp",
+      "source": "./plugins/basedpyright-lsp",
+      "description": "Python code intelligence and type checking powered by BasedPyright",
+      "category": "development"
+    }
+  ]
+}
