@@ -64,6 +64,18 @@ Restart Claude Code after installing.
 > claude plugin uninstall pyright-lsp@claude-plugins-official
 > ```
 
+## Updating
+
+Third-party marketplaces do not auto-update by default. Update manually:
+
+```bash
+claude plugin marketplace update basedpyright-marketplace
+claude plugin update basedpyright-lsp@basedpyright-marketplace
+```
+
+or turn on auto-update for this marketplace from `/plugin` > **Marketplaces**.
+BasedPyright itself is updated separately (`uv tool upgrade basedpyright`).
+
 ## Configuration
 
 The plugin sends no settings of its own. BasedPyright reads your project's
