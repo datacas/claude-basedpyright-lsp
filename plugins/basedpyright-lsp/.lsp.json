@@ -4,7 +4,8 @@
     "args": ["--stdio"],
     "extensionToLanguage": {
       ".py": "python",
-      ".pyi": "python"
+      ".pyi": "python",
+      ".pyw": "python"
     },
     "startupTimeout": 30000
   }

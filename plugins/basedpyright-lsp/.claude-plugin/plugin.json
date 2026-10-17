@@ -1,7 +1,7 @@
 {
   "name": "basedpyright-lsp",
   "displayName": "BasedPyright LSP",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Python code intelligence and type checking powered by BasedPyright",
   "author": {
     "name": "datacas",

@@ -58,7 +58,7 @@ Restart Claude Code after installing.
 
 > [!IMPORTANT]
 > Do not enable this plugin and the official `pyright-lsp` plugin at the same time.
-> Both handle `.py` and `.pyi` files, so you would run two servers on the same code.
+> Both handle Python files, so you would run two servers on the same code.
 >
 > ```bash
 > claude plugin uninstall pyright-lsp@claude-plugins-official
@@ -134,7 +134,16 @@ claude --plugin-dir ./plugins/basedpyright-lsp
 
 `tests/lsp_smoke.py` starts the server with the exact command from `.lsp.json` and
 checks diagnostics, `documentSymbol`, `hover`, `definition` and `references`. CI runs
-it on Linux, macOS and Windows, plus a weekly run against the latest BasedPyright.
+it on Linux, macOS and Windows against pinned versions (BasedPyright in
+`tests/requirements.txt`, Claude Code in the workflow), plus a weekly run against the
+latest releases.
+
+### Contributing
+
+`main` is protected: every change goes through a pull request, and the pull request
+merges (squash only) once CI passes on all platforms. When a change affects the
+plugin, bump `version` in `plugin.json` and add an entry to `CHANGELOG.md`, since
+installed copies only update when the version changes.
 
 ## Repository layout
 
