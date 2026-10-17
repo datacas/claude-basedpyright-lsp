@@ -5,7 +5,7 @@ providing type checking and code intelligence.
 
 ## Supported extensions
 
-`.py`, `.pyi`
+`.py`, `.pyi`, `.pyw`
 
 ## Installation
 
