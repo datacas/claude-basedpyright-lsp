@@ -4,6 +4,13 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- Plugin icon for the Anthropic directory listing (`.claude-plugin/icon.png`,
+  source in `assets/icon.svg`).
+
 ## [1.1.0] - 2026-10-17
 
 ### Added
